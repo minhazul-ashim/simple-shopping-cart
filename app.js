@@ -43,14 +43,16 @@ function productOrder(inputID, addition, priceID, price) {
 
 document.getElementById('phone-increase').addEventListener('click', function () {
 
-    productOrder('phone-input', true, 'phone-price', 1219)
+    productOrder('phone-input', true, 'phone-price', 1219);
+    calcTotal()
 })
 
 //Event handler for phone quantity and product total decrease;
 
 document.getElementById('phone-decrease').addEventListener('click', function () {
 
-    productOrder('phone-input', false, 'phone-price', 1219)
+    productOrder('phone-input', false, 'phone-price', 1219);
+    calcTotal()
 })
 
 //Event handler for phone case quantity and product total increase;
@@ -58,6 +60,7 @@ document.getElementById('phone-decrease').addEventListener('click', function () 
 document.getElementById('case-increase').addEventListener('click', function () {
 
     productOrder('case-input', true, 'case-price', 59);
+    calcTotal()
 })
 
 //Event handler for phone case quantity and product price decrease;
@@ -65,25 +68,28 @@ document.getElementById('case-increase').addEventListener('click', function () {
 document.getElementById('case-decrease').addEventListener('click', function () {
 
     productOrder('case-input', false, 'case-price', 59);
+    calcTotal()
 });
 
 
 //Function for calculating the total and taxes;
 
-function calcTotal () {
+function calcTotal() {
 
-    const subTotal = getPrice();
+    const productTotal = getPrice();
 
-    let subTotalSum = 0;
+    let subTotal = productTotal[0] + productTotal[1];
 
-    for (const element of subTotal) {
+    let tax = (15 * subTotal) / 100;
 
-        subTotalSum += element;
-    }
+    let total = subTotal + tax;
 
-    
+    document.getElementById('subtotal').innerText = subTotal;
+    document.getElementById('tax').innerText = tax;
+    document.getElementById('total').innerText = total;
+
+    return;
 }
-
 
 
 
